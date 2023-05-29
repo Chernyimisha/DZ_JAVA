@@ -1,4 +1,4 @@
-package homework.DZ6;
+package homework;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,13 +12,14 @@ public class DZ6 {
 //        Написать метод, который будет запрашивать у пользователя критерий (или критерии) фильтрации и выведет ноутбуки,
 //        отвечающие фильтру. Критерии фильтрации можно хранить в Map.
 //        Например:
-//        “Введите цифру, соответствующую необходимому критерию:
+//        Введите цифру, соответствующую необходимому критерию:
 //        1 - ОЗУ
 //        2 - Объём ЖД
 //        3 - Операционная система
 //        4 - Цвет …
 //        Далее нужно запросить минимальные значения для указанных критериев — сохранить параметры фильтрации можно также в Map.
 //        Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
+
         Notebook nb1 = new Notebook("Asus", "15 D543MA-DM1368", 4, 1000, "Windows 10", "черный");
         Notebook nb2 = new Notebook("Acer", "Aspire 3 A315-23-R0HR", 4, 256, "Windows 10", "черный");
         Notebook nb3 = new Notebook("Lenovo", "IdeaPad 3 15IML05", 8, 1000, "Windows 11", "серый");
@@ -36,14 +37,12 @@ public class DZ6 {
         Scanner sc = new Scanner(System.in, "cp866");
 
 
-        System.out.println();
-        System.out.println("Добро пожаловать в интернет-магазин 'На диване'\n" +
-                "Здесь вы можете подобрать себе подходящий ноутбук\n");
+
         boolean filter = true;
         while (filter) {
             System.out.println("Выбрать по ОЗУ, введите - 1\n" +
                     "Выбрать по объему жесткого диска, введите - 2\n" +
-                    "Выбрать по оперативной системе, введите - 3\n" +
+                    "Выбрать по операционной системе, введите - 3\n" +
                     "Выбрать по цвету, введите - 4\n" +
                     "Посмотреть все модели, введите - 5\n" +
                     "Для выхода из каталога, введите - 0");
@@ -66,7 +65,6 @@ public class DZ6 {
                     showCatalog(notebooks);
                     break;
                 case "0":
-                    System.out.println("До новых встреч!");
                     filter = false;
                     break;
                 default:
@@ -77,7 +75,6 @@ public class DZ6 {
         }
 
     }
-    // Функция фильтра по объему ОЗУ
     public static void filterRAM(HashSet<Notebook> notebooks, Scanner scanner) {
         TreeSet<Integer> ram = new TreeSet<>();
         for (Notebook note : notebooks) {
@@ -92,7 +89,7 @@ public class DZ6 {
         int filter = Integer.parseInt(volumeMemory);
         if (ram.contains(filter)) {
             System.out.println();
-            System.out.println("Отобрала подходящие модели по вашему запросу: ");
+            System.out.println("Подходящие модели по вашему запросу: ");
             System.out.println();
             for (Notebook note : notebooks) {
                 if (note.getRam() == filter) {
@@ -105,7 +102,6 @@ public class DZ6 {
         }
 
     }
-    // Функция фильтра по объему жесткого диска
     public static void FilterHardDisk(HashSet<Notebook> notebooks, Scanner scanner) {
         TreeSet<Integer> hardDisk = new TreeSet<>();
         for (Notebook note : notebooks) {
@@ -120,7 +116,7 @@ public class DZ6 {
         int filter = Integer.parseInt(volumeHD);
         if (hardDisk.contains(filter)) {
             System.out.println();
-            System.out.println("Отобрала подходящие модели по вашему запросу: ");
+            System.out.println("Подходящие модели по вашему запросу: ");
             System.out.println();
             for (Notebook note : notebooks) {
                 if (note.getHardDisk() == filter) {
@@ -132,7 +128,6 @@ public class DZ6 {
             FilterHardDisk(notebooks, scanner);
         }
     }
-    // Функция поиска по ОС
     public static void filterOS(HashSet<Notebook> notebooks, Scanner scanner) {
         TreeSet<String> operSystems = new TreeSet<>();
         for (Notebook note : notebooks) {
@@ -143,14 +138,14 @@ public class DZ6 {
                 + operSystems.toString().replaceAll("^\\[|\\]$", "") + "\n" +
                 "Введите интересующую ОС: ");
 
-        String oper = scanner.nextLine().toUpperCase();
+        String OS = scanner.nextLine().toUpperCase();
 
-        if (operSystems.contains(oper)) {
+        if (operSystems.contains(OS)) {
             System.out.println();
-            System.out.println("Отобрала подходящие модели по вашему запросу: ");
+            System.out.println("Подходящие модели по вашему запросу: ");
             System.out.println();
             for (Notebook note : notebooks) {
-                if (note.getOperSystem().equals(oper)) {
+                if (note.getOperSystem().equals(OS)) {
                     note.showInfo();
                 }
             }
@@ -160,7 +155,6 @@ public class DZ6 {
 
         }
     }
-    // Функция поиска по цвету
     public static void filterColor(HashSet<Notebook> notebooks, Scanner scanner){
         TreeSet<String> colors = new TreeSet<>();
         for (Notebook note: notebooks){
@@ -176,7 +170,7 @@ public class DZ6 {
         System.out.println(color);
         if (colors.contains(color)) {
             System.out.println();
-            System.out.println("Отобрала подходящие модели по вашему запросу: ");
+            System.out.println("Подходящие модели по вашему запросу: ");
             System.out.println();
             for (Notebook note : notebooks) {
                 if (note.getColor().equals(color)) {
@@ -188,7 +182,6 @@ public class DZ6 {
             filterColor(notebooks, scanner);
         }
     }
-    // Функция вывода полного каталога в консоль
     public static void showCatalog(HashSet<Notebook> notebooks){
         System.out.println();
         System.out.println("Полный каталог ноутбуков: ");

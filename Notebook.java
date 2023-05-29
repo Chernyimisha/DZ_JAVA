@@ -1,4 +1,4 @@
-package homework.DZ6;
+package homework;
 
 public class Notebook {
     String brand;
@@ -8,7 +8,6 @@ public class Notebook {
     String operSystem;
     String color;
 
-    // Конструктор
     public Notebook(String brand, String model, int ram, int hardDisk, String operSystem, String color){
         this.brand = brand.toUpperCase();
         this.model = model.toUpperCase();
@@ -19,7 +18,6 @@ public class Notebook {
     }
 
 
-    // Сэттеры
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -39,7 +37,6 @@ public class Notebook {
         this.color = color;
     }
 
-    //Геттеры
     public String getBrand() {
         return brand;
     }
@@ -60,7 +57,6 @@ public class Notebook {
     }
 
 
-    //Вывод в консоль
     public void showInfo(){
         System.out.println(String.format("Производитель: %s\nМодель: %s\nОЗУ(Гб): %d\nОбъем жесткого диска(Гб): %d\nОС: %s\nЦвет: %s\n",
                 this.brand, this.model, this.ram, this.hardDisk, this.operSystem, this.color));
